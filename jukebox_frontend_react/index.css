@@ -127,3 +127,60 @@ body {
     transform: rotate(20deg);
 
 }
+
+.box {
+    --side: 25px;
+    height: var(--side);
+    width: var(--side);
+  }
+  
+  .childlu {
+    height: 50%;
+    width: 50%;
+    background-color: #aee231;
+    transition: 1s ease-in-out;
+  }
+  
+  .childlb {
+    height: 50%;
+    width: 50%;
+    background-color: #e2d031;
+    transition: 1s ease-in-out;
+  }
+  
+  .childrb {
+    height: 50%;
+    width: 50%;
+    background-color: #e2ac31;
+    transition: 1s ease-in-out;
+    transform: translateX(100%) translateY(-100%);
+  }
+  
+  .childru {
+    height: 50%;
+    width: 50%;
+    background-color: #d1e231;
+    transition: 1s ease-in-out;
+    transform: translateX(100%) translateY(-300%);
+  }
+  
+  .box:hover .childlu {
+    background-color: #d1e231;
+    transform: translateY(100%)  rotate(90deg);
+  }
+  
+  .box:hover .childlb {
+    background-color: #aee231;
+    transform: translateX(100%) rotate(90deg);
+  }
+  
+  .box:hover .childru {
+    background-color: #e2ac31;
+    transform: translateX(0) translateY(-300%) rotate(90deg);
+  }
+  
+  .box:hover .childrb {
+    background-color: #e2d031;
+    transform: translateX(100%) translateY(-200%) rotate(90deg);
+  }
+  
