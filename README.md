@@ -1,18 +1,18 @@
 A jukebox app of two parts:
 
-Backend on Python Django with an API.
+- Backend on Python Django with an API.
 
-Frontend on React JS.
+- Frontend on React JS.
 
 
-Launch backend:
+- Launch backend:
 
   pip install -r api/req.txt
 
   python api/manage.py runserver
 
 
-Launch frontend:
+- Launch frontend:
 
   I personally use Live Server plugin with VS Code
 
