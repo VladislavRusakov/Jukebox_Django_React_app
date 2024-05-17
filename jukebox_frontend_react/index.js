@@ -17,6 +17,7 @@ function Shelf(props) {
     )
 }
 
+
 function Jukebox(props) {
     const playedRecord = props.state.find((Record) => Record.isPlayed ? Record.imageUrl: false)
 
@@ -47,6 +48,7 @@ function Jukebox(props) {
     )
 }
 
+
 function Record(props) {
     return (
         <div className="record" key={props.item.id}>
@@ -68,17 +70,48 @@ function Record(props) {
     )
 }
 
+
+function Filter(props) {
+    const [searchData, setSearchData] = React.useState({search: ""})
+    
+    let data = props
+
+    function handleChange(event) {
+        const {name, value} = event.target
+        setSearchData(prevSearchData => {
+            return {
+                ...prevSearchData,
+                [name]: value
+            }
+        })
+
+        props.onSearchChange(value);
+    }
+
+    return (
+        <div className="filter--container">
+            <input
+                className="filter--input"
+                onChange={handleChange}
+                name="search"
+                value={searchData.search}
+            />
+        </div>
+    )
+}
+
+
 function SocialFooter() {
     return (
         <footer className="footer">
             <div className="links" >
                 <a href="https://t.me/symbolminded">
-                <svg className="small--icon" fill="#918E9B" height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455.731 455.731" ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M316.244,149.903L149.082,253.579c-2.943,1.825-4.282,5.409-3.255,8.717l22.423,72.253 c0.471,1.518,2.683,1.309,2.861-0.271l5.45-48.448c0.21-1.872,1.108-3.599,2.519-4.847l141.556-125.177 C324.025,152.81,320.089,147.518,316.244,149.903z"></path> <path d="M0,0v455.731h455.731V0H0z M379.882,118.418l-52.031,248.76c-2.442,11.673-16.133,16.916-25.747,9.859l-78.559-57.665 l-40.039,40.881c-7.027,7.175-19.166,4.271-22.185-5.308l-28.901-91.706l-77.441-22.868c-10.16-3-10.759-17.165-0.888-21.012 l304.753-118.759C370.444,96.08,382.431,106.232,379.882,118.418z">
+                <svg className="small--icon" fill="#918E9B" height="25" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455.731 455.731" ><g id="SVGRepo_bgCarrier"></g><g id="SVGRepo_tracerCarrier" ></g><g id="SVGRepo_iconCarrier"> <g> <path d="M316.244,149.903L149.082,253.579c-2.943,1.825-4.282,5.409-3.255,8.717l22.423,72.253 c0.471,1.518,2.683,1.309,2.861-0.271l5.45-48.448c0.21-1.872,1.108-3.599,2.519-4.847l141.556-125.177 C324.025,152.81,320.089,147.518,316.244,149.903z"></path> <path d="M0,0v455.731h455.731V0H0z M379.882,118.418l-52.031,248.76c-2.442,11.673-16.133,16.916-25.747,9.859l-78.559-57.665 l-40.039,40.881c-7.027,7.175-19.166,4.271-22.185-5.308l-28.901-91.706l-77.441-22.868c-10.16-3-10.759-17.165-0.888-21.012 l304.753-118.759C370.444,96.08,382.431,106.232,379.882,118.418z">
                     </path> </g> </g></svg>
                 </a>
 
                 <a href="https://www.linkedin.com/in/vladislav-rusakov-35a256253/">
-                <svg className="small--icon" fill="#918E9B" height="25" width="25" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="-143 145 512 512" ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z M41.4,508.1H-8.5V348.4h49.9V508.1z M15.1,328.4h-0.4c-18.1,0-29.8-12.2-29.8-27.7c0-15.8,12.1-27.7,30.5-27.7 c18.4,0,29.7,11.9,30.1,27.7C45.6,316.1,33.9,328.4,15.1,328.4z M241,508.1h-56.6v-82.6c0-21.6-8.8-36.4-28.3-36.4 c-14.9,0-23.2,10-27,19.6c-1.4,3.4-1.2,8.2-1.2,13.1v86.3H71.8c0,0,0.7-146.4,0-159.7h56.1v25.1c3.3-11,21.2-26.6,49.8-26.6 c35.5,0,63.3,23,63.3,72.4V508.1z"></path> </g></svg>
+                <svg className="small--icon" fill="#918E9B" height="25" width="25" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="-143 145 512 512" ><g id="SVGRepo_bgCarrier"></g><g id="SVGRepo_tracerCarrier" ></g><g id="SVGRepo_iconCarrier"> <path d="M329,145h-432c-22.1,0-40,17.9-40,40v432c0,22.1,17.9,40,40,40h432c22.1,0,40-17.9,40-40V185C369,162.9,351.1,145,329,145z M41.4,508.1H-8.5V348.4h49.9V508.1z M15.1,328.4h-0.4c-18.1,0-29.8-12.2-29.8-27.7c0-15.8,12.1-27.7,30.5-27.7 c18.4,0,29.7,11.9,30.1,27.7C45.6,316.1,33.9,328.4,15.1,328.4z M241,508.1h-56.6v-82.6c0-21.6-8.8-36.4-28.3-36.4 c-14.9,0-23.2,10-27,19.6c-1.4,3.4-1.2,8.2-1.2,13.1v86.3H71.8c0,0,0.7-146.4,0-159.7h56.1v25.1c3.3-11,21.2-26.6,49.8-26.6 c35.5,0,63.3,23,63.3,72.4V508.1z"></path> </g></svg>
                 </a>
                 
                 <a href="https://www.instagram.com/_symbol_minded_/">
@@ -94,11 +127,11 @@ function SocialFooter() {
                 </a>
                 
                 <a href="https://github.com/VladislavRusakov/Jukebox_Django_React_app">
-                    <div class="box">
-                        <div class="childlu"></div>
-                        <div class="childlb"></div>
-                        <div class="childrb"></div>
-                        <div class="childru"></div>
+                    <div className="box">
+                        <div className="childlu"></div>
+                        <div className="childlb"></div>
+                        <div className="childrb"></div>
+                        <div className="childru"></div>
                     </div>
                 </a>
             </div>
@@ -108,6 +141,7 @@ function SocialFooter() {
         </footer>
     )
 }
+
 
 function App() {  
     const [nowPlaying, setNowPlaying] = React.useState([])
@@ -136,9 +170,27 @@ function App() {
         })
     }
 
+    function handleSearchChange(searchString) {
+        setNowPlaying(prevNowPlaying => {
+            if (!searchString) {
+                return prevNowPlaying.slice().sort((a, b) => a.id - b.id);
+            } else {
+                return prevNowPlaying.slice().sort((a, b) => {
+                    const aIncludes = a.artist.toLowerCase().includes(searchString.toLowerCase());
+                    const bIncludes = b.artist.toLowerCase().includes(searchString.toLowerCase());
+
+                    if (aIncludes && !bIncludes) return -1;
+                    if (!aIncludes && bIncludes) return 1;
+                    return 0;
+                });
+            }
+        });
+    }
+
     return (
         <div>
             <Shelf data={nowPlaying} handleClick={handleClick}/>
+            <Filter data={nowPlaying} onSearchChange={handleSearchChange}/>
             <Jukebox state={nowPlaying}/>
             <SocialFooter />
         </div>
