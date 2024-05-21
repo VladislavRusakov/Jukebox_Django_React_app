@@ -74,7 +74,11 @@ function Record(props) {
 function Filter(props) {
     const [searchData, setSearchData] = React.useState({search: ""})
     
-    let data = props
+    React.useEffect(() => {
+        if (props.inputRef.current) {
+            props.inputRef.current.focus();
+        }
+    }, []);
 
     function handleChange(event) {
         const {name, value} = event.target
@@ -90,7 +94,9 @@ function Filter(props) {
 
     return (
         <div className="filter--container">
-            <input
+            <input 
+                ref={props.inputRef}
+                autoComplete="off"
                 className="filter--input"
                 onChange={handleChange}
                 name="search"
@@ -145,6 +151,7 @@ function SocialFooter() {
 
 function App() {  
     const [nowPlaying, setNowPlaying] = React.useState([])
+    const inputRef = React.useRef(null);
 
     React.useEffect(() => {
         fetch('http://localhost:8000')
@@ -160,6 +167,20 @@ function App() {
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
+    }, []);
+
+    React.useEffect(() => {
+        const handleClick = () => {
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
+        };
+        
+        document.addEventListener('click', handleClick);
+
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
     }, []);
 
     function handleClick(id) {
@@ -190,7 +211,11 @@ function App() {
     return (
         <div>
             <Shelf data={nowPlaying} handleClick={handleClick}/>
-            <Filter data={nowPlaying} onSearchChange={handleSearchChange}/>
+            <Filter 
+                data={nowPlaying} 
+                onSearchChange={handleSearchChange}
+                inputRef={inputRef} 
+            />
             <Jukebox state={nowPlaying}/>
             <SocialFooter />
         </div>
