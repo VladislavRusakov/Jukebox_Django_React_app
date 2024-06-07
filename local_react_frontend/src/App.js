@@ -78,8 +78,8 @@ function App() {
               onSearchChange={handleSearchChange}
               inputRef={inputRef} 
           />
-          <Jukebox state={nowPlaying}/>
           <Player state={nowPlaying}/>
+          <Jukebox state={nowPlaying}/>
           <SocialFooter />
       </div>
   )
