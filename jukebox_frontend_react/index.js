@@ -107,6 +107,61 @@ function Filter(props) {
 }
 
 
+function Player(props) {
+    const [videoId, setVideoId] = React.useState('');
+    const [player, setPlayer] = React.useState(null);
+
+    React.useEffect(() => {
+        const playedRecord = props.state.find(record => record.isPlayed);
+        if (playedRecord) {
+            const videoUrl = playedRecord.youtubeUrl;
+            const regex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/
+            const match = videoUrl.match(regex);
+            const newVideoId = match ? match[1] : null;
+            setVideoId(newVideoId);
+        }
+    }, [props.state]); // Only run this effect when props.state changes
+
+    console.log(videoId)
+
+    React.useEffect(() => {
+        if (videoId && !player) {
+            window.onYouTubeIframeAPIReady = () => {
+                const newPlayer = new YT.Player('player', {
+                    height: '200',
+                    width: '350',
+                    videoId: videoId,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+                setPlayer(newPlayer);
+            };
+            // Load the YouTube IFrame Player API script
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        } else if (player) {
+            player.loadVideoById(videoId);
+        }
+    }, [videoId, player]);
+
+    function onPlayerReady(event) {
+        console.log("Player ready")
+    }
+
+    function onPlayerStateChange(event) {
+        console.log("Player state change")
+    }
+
+    return (
+        <div className="youtube--player" id="player"></div>
+    );
+}
+
+
 function SocialFooter() {
     return (
         <footer className="footer">
@@ -217,6 +272,7 @@ function App() {
                 inputRef={inputRef} 
             />
             <Jukebox state={nowPlaying}/>
+            <Player state={nowPlaying}/>
             <SocialFooter />
         </div>
     )

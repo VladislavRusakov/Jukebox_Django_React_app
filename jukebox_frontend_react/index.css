@@ -184,6 +184,7 @@ body {
   transform: translateX(100%) translateY(-200%) rotate(90deg);
 }
 
+/* Filter */
 .filter--input {
   display: flex;
   margin-left: auto;
@@ -197,4 +198,11 @@ body {
 
 .filter--container > input:focus {
   outline:none;
+}
+
+/* YouTube Player */
+.youtube--player {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
