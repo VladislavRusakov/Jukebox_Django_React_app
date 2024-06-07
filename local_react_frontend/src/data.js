@@ -311,7 +311,15 @@ const local_data =  [
         "isPlayed": false,
         "imageUrl": "https://lastfm.freetls.fastly.net/i/u/500x500/9b12b95ef097e77b447a9879b8b95cab.jpg",
         "youtubeUrl": "https://youtu.be/hCR5R_wcWvA"
-    }
+    },
+    {
+        "id": 35,
+        "artist": "Casiopea",
+        "title": "Funky sound bombers",
+        "isPlayed": false,
+        "imageUrl": "https://i.discogs.com/kLIdIj5z52sSgsdxfOFn_K-PTnhkRbxqv5roXNxBGEc/rs:fit/g:sm/q:90/h:580/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5OTU3/OTAtMTQwMjY4NDg2/NC01MTI1LmpwZWc.jpeg",
+        "youtubeUrl": "https://youtu.be/rMBLjtZnOcI"
+    } 
 ]
 
 export default local_data;
