@@ -16,6 +16,8 @@ Launch backend:
 
 Launch frontend:
 
+- cd local_react_frontend
+
 - npm install
 
 - npm start
