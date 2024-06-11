@@ -16,7 +16,7 @@ function Jukebox({ mainData }) {
                         </div>
                     </div>
                     {playedRecord ? 
-                    <a href={playedRecord.youtubeUrl}>
+                    <a href={playedRecord.youtubeUrl} target="_blank" rel="noopener noreferrer">
                     <img src={playedRecord.imageUrl} alt="internal record"/>
                     </a>
                     :
