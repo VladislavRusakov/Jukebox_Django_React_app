@@ -1,5 +1,5 @@
-function Jukebox({ state }) {
-    const playedRecord = state.find(record => record.isPlayed);
+function Jukebox({ mainData }) {
+    const playedRecord = mainData.find(record => record.isPlayed);
 
     return (
         <div className="jukebox">

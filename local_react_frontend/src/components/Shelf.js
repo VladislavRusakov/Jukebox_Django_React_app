@@ -1,7 +1,7 @@
 import Record from './Record'
 
-function Shelf({ data, handleClick }) {
-    const items = data.map(item => (
+function Shelf({ mainData, handleClick }) {
+    const items = mainData.map(item => (
         <Record
             key={item.id}
             item={item}

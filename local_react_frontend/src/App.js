@@ -1,19 +1,25 @@
 import React from 'react';
 
-import Shelf from './components/Shelf'
-import Filter from './components/Filter'
-import Jukebox from './components/Jukebox'
-import Player from './components/Player'
-import SocialFooter from './components/SocialFooter'
+import Navbar from './components/Navbar';
+import Shelf from './components/Shelf';
+import Filter from './components/Filter';
+import Jukebox from './components/Jukebox';
+import Player from './components/Player';
+import SocialFooter from './components/SocialFooter';
 
 import local_data from './data.js';
-
 import './index.css';
 
 
 function App() {  
-  const [nowPlaying, setNowPlaying] = React.useState(local_data)
+  const [mainData, setMainData] = React.useState(local_data);
   const inputRef = React.useRef(null);
+  const playerRef = React.useRef(null);
+
+  const [isPlaying, setIsPlaying] = React.useState(true);
+  const [volume, setVolume] = React.useState(15);
+  const [currentTime, setCurrentTime] = React.useState(0);
+  const [duration, setDuration] = React.useState(0);
 
   React.useEffect(() => {
       fetch('http://localhost:8000')
@@ -24,7 +30,7 @@ function App() {
               return response.json();
           })
           .then(data => {
-              setNowPlaying(data);
+              setMainData(data);
           })
           .catch(error => {
               console.error('There was a problem with the fetch operation:', error);
@@ -46,19 +52,19 @@ function App() {
   }, []);
 
   function handleClick(id) {
-      setNowPlaying(prevNowPlaying => {
-          return prevNowPlaying.map((Record) => {
-              return Record.id === id ? {...Record, isPlayed: true}: {...Record, isPlayed: false}
-          })
-      })
+      setMainData(prevmainData => {
+          return prevmainData.map((Record) => {
+              return Record.id === id ? {...Record, isPlayed: true} : {...Record, isPlayed: false};
+          });
+      });
   }
 
   function handleSearchChange(searchString) {
-      setNowPlaying(prevNowPlaying => {
+      setMainData(prevmainData => {
           if (!searchString) {
-              return prevNowPlaying.slice().sort((a, b) => a.id - b.id);
+              return prevmainData.slice().sort((a, b) => a.id - b.id);
           } else {
-              return prevNowPlaying.slice().sort((a, b) => {
+              return prevmainData.slice().sort((a, b) => {
                   const aIncludes = a.artist.toLowerCase().includes(searchString.toLowerCase());
                   const bIncludes = b.artist.toLowerCase().includes(searchString.toLowerCase());
 
@@ -70,19 +76,65 @@ function App() {
       });
   }
 
+  const onPlay = () => {
+      if (playerRef.current) {
+          playerRef.current.playVideo();
+          setIsPlaying(true);
+      }
+  };
+
+  const onPause = () => {
+      if (playerRef.current) {
+          playerRef.current.pauseVideo();
+          setIsPlaying(false);
+      }
+  };
+
+  const handleVolumeChange = (value) => {
+      if (playerRef.current) {
+          playerRef.current.setVolume(value);
+          setVolume(value);
+      }
+  };
+
+  const handleSeek = (time) => {
+      if (playerRef.current) {
+          playerRef.current.seekTo(time);
+      }
+  };
+
   return (
-      <div>
-          <Shelf data={nowPlaying} handleClick={handleClick}/>
-          <Filter 
-              data={nowPlaying} 
-              onSearchChange={handleSearchChange}
-              inputRef={inputRef} 
-          />
-          <Player state={nowPlaying}/>
-          <Jukebox state={nowPlaying}/>
-          <SocialFooter />
-      </div>
-  )
+    <div>
+        <Navbar
+            onPlay={onPlay}
+            onPause={onPause}
+            onVolumeChange={handleVolumeChange}
+            isPlaying={isPlaying}
+            volume={volume}
+            currentTime={currentTime}
+            duration={duration}
+            onSeek={handleSeek}
+        />
+        <Shelf
+            mainData={mainData}
+            handleClick={handleClick}
+        />
+        <Filter 
+            onSearchChange={handleSearchChange}
+            inputRef={inputRef} 
+        />
+        <Player 
+            mainData={mainData}
+            onPlayerReadyRef={playerRef}
+            setVolume={setVolume}
+            setIsPlaying={setIsPlaying}
+            setCurrentTime={setCurrentTime}
+            setDuration={setDuration}
+        />
+        <Jukebox mainData={mainData}/>
+        <SocialFooter />
+    </div>
+  );
 }
 
 export default App;

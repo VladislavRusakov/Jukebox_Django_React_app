@@ -204,10 +204,55 @@ body {
 /* YouTube Player */
 .youtube--player--container {
   margin-top: 2vh;
-  display: flex;
+  display:  none;
 }
 
 .youtube--player--container * {
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  align-items: center;
+  background-color: #161619;
+  padding: 10px;
+  color: white;
+}
+
+.navbar button {
+  background-color: #918E9B;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+
+  height: 4vh;
+  min-height: 33px;
+  width: 3vw;
+  min-width: 54px;
+}
+
+.volume--pause--container button:hover {
+  background-color: #777;
+}
+
+.volume {
+  width: 20vw;
+  min-width: 150px;
+}
+
+.timeline--container {
+  display: flex;
+  width: 100%;
+}
+
+.timeline {
+  margin: auto;
+  width: 80%;
 }

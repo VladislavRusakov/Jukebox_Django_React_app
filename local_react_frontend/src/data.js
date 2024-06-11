@@ -319,7 +319,15 @@ const local_data =  [
         "isPlayed": false,
         "imageUrl": "https://i.discogs.com/kLIdIj5z52sSgsdxfOFn_K-PTnhkRbxqv5roXNxBGEc/rs:fit/g:sm/q:90/h:580/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5OTU3/OTAtMTQwMjY4NDg2/NC01MTI1LmpwZWc.jpeg",
         "youtubeUrl": "https://youtu.be/rMBLjtZnOcI"
-    } 
+    },
+    {
+        "id": 36,
+        "artist": "Charlse Mingus",
+        "title": "23 Masterpieces",
+        "isPlayed": false,
+        "imageUrl": "https://m.media-amazon.com/images/I/51lJa7iEbzL._UXNaN_FMjpg_QL85_.jpg",
+        "youtubeUrl": "https://www.youtube.com/watch?v=qkhQRGbLEUI"
+    }
 ]
 
 export default local_data;
