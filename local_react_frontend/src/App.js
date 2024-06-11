@@ -17,7 +17,8 @@ function App() {
   const playerRef = React.useRef(null);
 
   const [isPlaying, setIsPlaying] = React.useState(true);
-  const [volume, setVolume] = React.useState(15);
+  const defaultVolume = 15
+  const [volume, setVolume] = React.useState(defaultVolume);
   const [currentTime, setCurrentTime] = React.useState(0);
   const [duration, setDuration] = React.useState(0);
 

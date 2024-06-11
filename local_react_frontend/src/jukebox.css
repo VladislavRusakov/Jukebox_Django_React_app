@@ -118,7 +118,7 @@ transform: translateX(-50%);
 overflow: hidden;
 }
 
-.jukebox__internal > img {
+.jukebox__internal > a > img {
 width: 100%;
 height: 100%;
 }

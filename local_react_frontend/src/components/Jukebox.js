@@ -15,7 +15,14 @@ function Jukebox({ mainData }) {
                             <span>{playedRecord ? `${playedRecord.artist} - ${playedRecord.title}` : 'Jukebox'}</span>
                         </div>
                     </div>
-                    <img src={playedRecord ? playedRecord.imageUrl : "https://w7.pngwing.com/pngs/120/838/png-transparent-carpet-kitchen-textile-cotton-indigo-texture-furniture-computer-wallpaper-symmetry-thumbnail.png"} alt="internal record" />
+                    {playedRecord ? 
+                    <a href={playedRecord.youtubeUrl}>
+                    <img src={playedRecord.imageUrl} alt="internal record"/>
+                    </a>
+                    :
+                    <img src= "https://w7.pngwing.com/pngs/120/838/png-transparent-carpet-kitchen-textile-cotton-indigo-texture-furniture-computer-wallpaper-symmetry-thumbnail.png" alt="internal record" />
+                    }
+                    {/* <img src={playedRecord ? playedRecord.imageUrl : "https://w7.pngwing.com/pngs/120/838/png-transparent-carpet-kitchen-textile-cotton-indigo-texture-furniture-computer-wallpaper-symmetry-thumbnail.png"} alt="internal record" /> */}
                 </div>
             </div>
             <div className="jukebox__leg jukebox__leg--left"></div>

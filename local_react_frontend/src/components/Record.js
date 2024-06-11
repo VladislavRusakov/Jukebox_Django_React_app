@@ -1,4 +1,5 @@
 function Record({ item, handleClick, id }) {
+
     return (
         <div className="record">
             <div className="face spine white">

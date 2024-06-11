@@ -3,6 +3,7 @@ import YouTube from 'react-youtube';
 
 function Player({ mainData, onPlayerReadyRef, setVolume, setIsPlaying, setCurrentTime, setDuration }) { // Changes: Added setCurrentTime and setDuration as props
     const playerRef = React.useRef(null);
+    const intervalRef = React.useRef(null);
     const [videoId, setVideoId] = React.useState('');
 
     React.useEffect(() => {
@@ -15,6 +16,14 @@ function Player({ mainData, onPlayerReadyRef, setVolume, setIsPlaying, setCurren
             setVideoId(newVideoId);
         }
     }, [mainData]);
+
+    React.useEffect(() => {
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, []);
 
     const opts = {
         height: '200',
@@ -33,8 +42,11 @@ function Player({ mainData, onPlayerReadyRef, setVolume, setIsPlaying, setCurren
         setIsPlaying(event.target.getPlayerState() === 1); // Changes: 1 is the state code for playing
         setDuration(event.target.getDuration()); // Changes: Set video duration
 
-        // Polling to update current time
-        setInterval(() => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        intervalRef.current = setInterval(() => {
             setCurrentTime(event.target.getCurrentTime());
         }, 1000);
     }

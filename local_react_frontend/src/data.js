@@ -322,7 +322,7 @@ const local_data =  [
     },
     {
         "id": 36,
-        "artist": "Charlse Mingus",
+        "artist": "Charles Mingus",
         "title": "23 Masterpieces",
         "isPlayed": false,
         "imageUrl": "https://m.media-amazon.com/images/I/51lJa7iEbzL._UXNaN_FMjpg_QL85_.jpg",
