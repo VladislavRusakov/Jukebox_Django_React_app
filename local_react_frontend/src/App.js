@@ -8,7 +8,6 @@ import Player from './components/Player';
 import SocialFooter from './components/SocialFooter';
 
 import local_data from './data.js';
-import './index.css';
 
 
 function App() {  
