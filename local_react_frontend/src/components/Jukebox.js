@@ -1,10 +1,10 @@
-function Jukebox({ mainData }) {
+function Jukebox({ mainData, isPlaying }) {
     const playedRecord = mainData.find(record => record.isPlayed);
 
     return (
         <div className="jukebox">
             <div className="jukebox__head">
-                <div className={playedRecord ? "jukebox__record spinning" : "jukebox__record"}>
+                <div className={playedRecord && isPlaying ? "jukebox__record spinning" : "jukebox__record"}>
                     <img className="jukebox__record-image" src={playedRecord ? playedRecord.imageUrl : "https://rms4.kufar.by/v1/list_thumbs_2x/adim1/0f5fb9d8-8f40-4ccc-af45-4aace9a6d7c8.jpg"} alt="record" />
                 </div>
             </div>

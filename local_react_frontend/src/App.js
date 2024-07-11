@@ -20,7 +20,7 @@ function App() {
   const [volume, setVolume] = React.useState(defaultVolume);
   const [currentTime, setCurrentTime] = React.useState(0);
   const [duration, setDuration] = React.useState(0);
-
+    
   React.useEffect(() => {
       fetch('http://localhost:8000')
           .then(response => {
@@ -131,7 +131,10 @@ function App() {
             setCurrentTime={setCurrentTime}
             setDuration={setDuration}
         />
-        <Jukebox mainData={mainData}/>
+        <Jukebox 
+            mainData={mainData}
+            isPlaying={isPlaying}
+        />
         <SocialFooter />
     </div>
   );
